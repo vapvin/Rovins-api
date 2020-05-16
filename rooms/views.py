@@ -28,3 +28,13 @@ class SeeRoomView(RetrieveAPIView):
 
     queryset = Room.objects.all()
     serializer_class = ReadRoomSerializer
+
+
+class RoomView(APIView):
+    def get(self, request, pk):
+        try:
+            room = Room.objects.get(pk=pk)
+            serializer = ReadRoomSerializer(room).data
+            return Response(serializer)
+        except Room.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
