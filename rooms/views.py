@@ -46,7 +46,7 @@ class RoomView(APIView):
                     else:
                         return Response(status=status.HTTP_404_NOT_FOUND)
 
-      def put(self, request, pk):
+    def put(self, request, pk):
             room = self.get_room(pk)
             if room is not None:
                 if room.user != request.user:
@@ -59,3 +59,13 @@ class RoomView(APIView):
                 return Response()
             else:
                 return Response(status=status.HTTP_404_NOT_FOUND)
+
+    def delete(self, request, pk):
+              room = self.get_room(pk)
+              if room is not None:
+                  if room.user != request.user:
+                      return Response(status=status.HTTP_403_FORBIDDEN)
+                  room.delete()
+                  return Response(status=status.HTTP_200_OK)
+              else:
+                  return Response(status=status.HTTP_404_NOT_FOUND)
