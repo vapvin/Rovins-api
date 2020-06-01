@@ -6,11 +6,14 @@ REST & GraphQL API of the Rovins Project using Django REST Framework and Graphen
 
 - [x] List Rooms
 - [x] See Room
+- [x] Edit Room
+- [x] Create Room
+- [x] Delete Room
+- [ ] Add/Del Room to Favourites
 - [ ] Filter Rooms
 - [ ] Search By Coords
 - [ ] Login
 - [ ] Create Account
-- [ ] Add Room to Favourites
 - [ ] See Favs
-- [ ] See Profile
-- [ ] Edit Profile
+- [x] See Profile
+- [x] Edit Profile
