@@ -32,7 +32,7 @@ def user_detail(request, pk):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
 
-@api_view(["POST"])
+@api_view(["GET", "POST"])
 @permission_classes([IsAuthenticated])
 def toggle_fav(request):
     room = request.data.get("room")
