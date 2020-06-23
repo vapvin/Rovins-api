@@ -33,12 +33,6 @@ def user_detail(request, pk):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
 
-# @api_view(["GET", "POST"])
-# @permission_classes([IsAuthenticated])
-# def toggle_fav(request):
-#     room = request.data.get("room")
-#     print(room)
-
 class FavsView(APIView):
 
     permission_classes = [IsAuthenticated]
@@ -47,7 +41,6 @@ class FavsView(APIView):
         user = request.user
         serializer = RoomSerializer(user.favs.all(), many=True).data
         return Response(serializer)
-
 
     def put(self, request):
         pass
