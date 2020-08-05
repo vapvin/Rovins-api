@@ -8,7 +8,6 @@ from .serializers import RoomSerializer
 
 
 class OwnPagination(PageNumberPagination):
-
     page_size = 20
 
 
@@ -17,7 +16,7 @@ class RoomsView(APIView):
         paginator = OwnPagination()
         rooms = Room.objects.all()
         results = paginator.paginate_queryset(rooms, request)
-        serializer = RoomSerializer(results, many=True).data
+        serializer = RoomSerializer(results, many=True)
         return paginator.get_paginated_response(serializer.data)
 
     def post(self, request):
@@ -73,6 +72,7 @@ class RoomView(APIView):
         else:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
+
 @api_view(["GET"])
 def room_search(request):
     max_price = request.GET.get("max_price", None)
@@ -82,7 +82,7 @@ def room_search(request):
     bathrooms = request.GET.get("bathrooms", None)
     filter_kwargs = {}
     if max_price is not None:
-        filter_kwargs["price_lte"] = max_price
+        filter_kwargs["price__lte"] = max_price
     if min_price is not None:
         filter_kwargs["price__gte"] = min_price
     if beds is not None:
